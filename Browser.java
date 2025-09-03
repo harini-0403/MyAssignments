@@ -1,25 +1,20 @@
-package browserdemo;
+package com.assignment.week1;
 
 public class Browser {
-    String browserName;
-    String browserVersion;
-
-    // Constructor
-    public Browser(String name, String version) {
-        this.browserName = name;
-        this.browserVersion = version;
+    // Method with parameter
+    public void launchBrowser(String browserName) {
+        System.out.println(browserName + " launched successfully");
     }
 
-    // Common methods
-    public void openURL() {
-        System.out.println(browserName + " v" + browserVersion + " -> URL loaded successfully");
+    // Method returning String
+    public String loadUrl() {
+        return "Url loaded successfully";
     }
 
-    public void closeBrowser() {
-        System.out.println(browserName + " -> Browser closed successfully");
-    }
-
-    public void navigateBack() {
-        System.out.println(browserName + " -> Navigated back successfully");
+    // Main method to test Browser
+    public static void main(String[] args) {
+        Browser br = new Browser();  // Create object
+        br.launchBrowser("Chrome");  // Call method
+        System.out.println(br.loadUrl());  // Call method
     }
 }
