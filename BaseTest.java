@@ -7,24 +7,19 @@ import org.testng.annotations.AfterMethod;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
-    // ThreadLocal ensures each test thread gets its own WebDriver
-    private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
-
-    public WebDriver getDriver() {
-        return tlDriver.get();
-    }
+    protected WebDriver driver;
 
     @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
-        tlDriver.set(driver);
     }
 
     @AfterMethod
     public void tearDown() {
-        getDriver().quit();
-        tlDriver.remove();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
